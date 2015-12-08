@@ -41,9 +41,9 @@ import org.springframework.batch.core.step.tasklet.Tasklet;
  * features here can generally be composed from existing Spring Batch interfaces
  * (although for performance reasons, implementations might choose
  * special-purpose optimisations via a relation database, for instance).
- * 
+ *
  * @author Dave Syer
- * 
+ *
  */
 public interface JobService {
 
@@ -52,7 +52,7 @@ public interface JobService {
 	 * names returned from {@link #listJobs(int, int)} might be in the
 	 * repository, but not be launchable if the host application has no
 	 * configuration for them.
-	 * 
+	 *
 	 * @param jobName the name of the job
 	 * @return true if the job is available for launching
 	 */
@@ -62,11 +62,11 @@ public interface JobService {
 	 * Launch a job with the parameters provided. If an instance with the
 	 * parameters provided has already failed (and is not abandoned) it will be
 	 * restarted.
-	 * 
+	 *
 	 * @param jobName the job name
 	 * @param params the {@link JobParameters}
 	 * @return the resulting {@link JobExecution} if successful
-	 * 
+	 *
 	 * @throws NoSuchJobException
 	 * @throws JobExecutionAlreadyRunningException
 	 * @throws JobRestartException
@@ -79,21 +79,21 @@ public interface JobService {
 
 	/**
 	 * Get the last {@link JobParameters} used to execute a job successfully.
-	 * 
+	 *
 	 * @param jobName the name of the job
 	 * @return the last parameters used to execute this job or empty if there
 	 * are none
-	 * 
+	 *
 	 * @throws NoSuchJobException
 	 */
 	JobParameters getLastJobParameters(String jobName) throws NoSuchJobException;
 
 	/**
 	 * Launch a job with the parameters provided.
-	 * 
+	 *
 	 * @param jobExecutionId the job execution to restart
 	 * @return the resulting {@link JobExecution} if successful
-	 * 
+	 *
 	 * @throws NoSuchJobExecutionException
 	 * @throws JobExecutionAlreadyRunningException
 	 * @throws JobRestartException
@@ -129,7 +129,7 @@ public interface JobService {
 	 * implementations to ensure that the signal is obeyed. In particular, if
 	 * users provide a custom {@link Tasklet} to a {@link Step} it must check
 	 * the signal in the {@link JobExecution} itself.
-	 * 
+	 *
 	 * @param jobExecutionId the job execution id to stop
 	 * @return the {@link JobExecution} that was stopped
 	 * @throws NoSuchJobExecutionException
@@ -142,7 +142,7 @@ public interface JobService {
 	 * because the process died this is the best way to mark a job as finished
 	 * with (as opposed to STOPPED). An abandoned job execution can be
 	 * restarted, but a stopping one cannot.
-	 * 
+	 *
 	 * @param jobExecutionId the job execution id to abort
 	 * @return the {@link JobExecution} that was aborted
 	 * @throws NoSuchJobExecutionException
@@ -155,7 +155,7 @@ public interface JobService {
 	 * Query the job names in the system, either launchable or not. If not
 	 * launchable, then there must be a history of the job having been launched
 	 * previously in the {@link JobRepository}.
-	 * 
+	 *
 	 * @param start the start index of the job names to return
 	 * @param count the maximum number of job names to return
 	 * @return a collection of job names
@@ -165,14 +165,14 @@ public interface JobService {
 	/**
 	 * Count the total number of jobs that can be returned by
 	 * {@link #listJobs(int, int)}.
-	 * 
+	 *
 	 * @return the total number of jobs
 	 */
 	int countJobs();
 
 	/**
 	 * Get a {@link JobInstance job instance} by id.
-	 * 
+	 *
 	 * @param jobInstanceId the id of the instance
 	 * @return a {@link JobInstance job instance}
 	 * @throws NoSuchJobInstanceException
@@ -182,7 +182,7 @@ public interface JobService {
 	/**
 	 * List the {@link JobInstance job instances} in descending order of
 	 * creation (usually close to order of execution).
-	 * 
+	 *
 	 * @param jobName the name of the job
 	 * @param start the index of the first to return
 	 * @param count the maximum number of instances to return
@@ -194,7 +194,7 @@ public interface JobService {
 	/**
 	 * Count the number of {@link JobInstance job instances} in the repository
 	 * for a given job name.
-	 * 
+	 *
 	 * @param jobName the name of the job
 	 * @return the number of job instances available
 	 * @throws NoSuchJobException
@@ -204,7 +204,7 @@ public interface JobService {
 	/**
 	 * List the {@link JobExecution job executions} for a job in descending
 	 * order of creation (usually close to execution order).
-	 * 
+	 *
 	 * @param jobName the job name
 	 * @param start the start index of the first job execution
 	 * @param count the maximum number of executions to return
@@ -215,7 +215,7 @@ public interface JobService {
 
 	/**
 	 * Count the job executions in the repository for a job.
-	 * 
+	 *
 	 * @param jobName the job name
 	 * @return the number of executions
 	 * @throws NoSuchJobException
@@ -226,7 +226,7 @@ public interface JobService {
 	 * Get all the job executions for a given job instance. On a sunny day there
 	 * would be only one. If there have been failures and restarts there may be
 	 * many, and they will be listed in reverse order of primary key.
-	 * 
+	 *
 	 * @param jobName the name of the job
 	 * @param jobInstanceId the id of the job instance
 	 * @return all the job executions
@@ -238,7 +238,7 @@ public interface JobService {
 	/**
 	 * List the {@link JobExecution job executions} in descending order of
 	 * creation (usually close to execution order).
-	 * 
+	 *
 	 * @param start the index of the first execution to return
 	 * @param count the maximum number of executions
 	 * @return a collection of {@link JobExecution}
@@ -248,17 +248,17 @@ public interface JobService {
 	/**
 	 * Count the maximum number of executions that could be returned by
 	 * {@link #listJobExecutions(int, int)}.
-	 * 
+	 *
 	 * @return the number of job executions in the job repository
 	 */
 	int countJobExecutions();
 
 	/**
 	 * Get a {@link JobExecution} by id.
-	 * 
+	 *
 	 * @param jobExecutionId the job execution id
 	 * @return the {@link JobExecution}
-	 * 
+	 *
 	 * @throws NoSuchJobExecutionException
 	 */
 	JobExecution getJobExecution(Long jobExecutionId) throws NoSuchJobExecutionException;
@@ -266,10 +266,10 @@ public interface JobService {
 	/**
 	 * Get the {@link StepExecution step executions} for a given job execution
 	 * (by id).
-	 * 
+	 *
 	 * @param jobExecutionId the parent job execution id
 	 * @return the step executions for the job execution
-	 * 
+	 *
 	 * @throws NoSuchJobExecutionException
 	 */
 	Collection<StepExecution> getStepExecutions(Long jobExecutionId) throws NoSuchJobExecutionException;
@@ -282,7 +282,7 @@ public interface JobService {
 	 * @param stepName the step name (or a pattern with wildcards)
 	 * @param start the start index of the first execution
 	 * @param count the maximum number of executions to return
-	 * 
+	 *
 	 * @return a collection of {@link StepExecution}
 	 * @throws NoSuchStepException
 	 */
@@ -294,7 +294,7 @@ public interface JobService {
 	 * pattern).
 	 * @param jobName the job name (or a pattern with wildcards)
 	 * @param stepName the step name (or a pattern with wildcards)
-	 * 
+	 *
 	 * @return the number of executions
 	 * @throws NoSuchStepException
 	 */
@@ -303,11 +303,11 @@ public interface JobService {
 	/**
 	 * Locate a {@link StepExecution} from its id and that of its parent
 	 * {@link JobExecution}.
-	 * 
+	 *
 	 * @param jobExecutionId the job execution id
 	 * @param stepExecutionId the step execution id
 	 * @return the {@link StepExecution}
-	 * 
+	 *
 	 * @throws NoSuchStepExecutionException
 	 * @throws NoSuchJobExecutionException
 	 */
@@ -316,14 +316,14 @@ public interface JobService {
 
 	/**
 	 * Send a stop signal to all running job executions.
-	 * 
+	 *
 	 * @return the number of executions affected
 	 */
 	int stopAll();
 
 	/**
 	 * Check if a job has a {@link JobParametersIncrementer}.
-	 * 
+	 *
 	 * @param jobName the job name
 	 * @return true if the job exists and has an incrementer
 	 */
@@ -332,10 +332,15 @@ public interface JobService {
 	/**
 	 * Get the names of the steps in a job (or a historical list of recent
 	 * execution names if the Job is not launchable).
-	 * 
+	 *
 	 * @param jobName the name of the job
 	 * @throws NoSuchJobException if the job name cannot be located
 	 */
 	Collection<String> getStepNamesForJob(String jobName) throws NoSuchJobException;
 
+	/**
+	 * Check all the active executions and see if they are still actually
+	 * running. Remove the ones that have completed.
+	 */
+	void removeInactiveExecutions();
 }
