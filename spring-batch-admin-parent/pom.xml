@@ -235,6 +235,14 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<extensions>
+			<!-- Enabling the use of SSH -->
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh-external</artifactId>
+				<version>2.9</version>
+			</extension>
+		</extensions>
 	</build>
 	<reporting>
 		<plugins>
@@ -636,42 +644,23 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
 	<distributionManagement>
-		<site>
-			<id>static.springframework.org</id>
-			<url>scp://static.springframework.org/var/www/domains/springframework.org/static/htdocs/spring-batch-admin/trunk</url>
-		</site>
 		<repository>
-			<id>spring-release</id>
-			<name>Spring Release Repository</name>
-			<url>s3://maven.springframework.org/release</url>
+			<id>ucd-afs-maven-ssh</id>
+			<url>scpexe://kurrency/opt/kuali-tools/share/maven-repo</url>
 		</repository>
-		<snapshotRepository>
-			<id>spring-snapshot</id>
-			<name>Spring Snapshot Repository</name>
-			<url>s3://maven.springframework.org/snapshot</url>
-		</snapshotRepository>
 	</distributionManagement>
+
 	<repositories>
 		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Maven Milestone Repository</name>
-			<url>https://repo.spring.io/libs-milestone</url>
+			<id>ucd-afs-dev</id>
+			<url>https://kfs-dev.ucdavis.edu/share/maven-repo/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
 			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>spring-snapshots</id>
-			<name>Spring Maven Snapshot Repository</name>
-			<url>https://repo.spring.io/libs-snapshot-local</url>
-		</repository>
-		<repository>
-			<id>objectstyle</id>
-			<name>ObjectStyle.org Repository</name>
-			<url>https://objectstyle.org/maven2</url>
-			<snapshots>
-				<enabled>false</enabled>
+				<enabled>true</enabled>
 			</snapshots>
 		</repository>
 	</repositories>
