@@ -117,46 +117,6 @@
 			</build>
 		</profile>
 		<profile>
-			<id>milestone</id>
-			<distributionManagement>
-				<repository>
-					<id>spring-milestone</id>
-					<name>Spring Milestone Repository</name>
-					<url>s3://maven.springframework.org/milestone</url>
-				</repository>
-			</distributionManagement>
-		</profile>
-		<profile>
-			<id>central</id>
-			<distributionManagement>
-				<repository>
-					<id>spring-sourceforge</id>
-					<name>Spring Sourceforge Repository</name>
-					<url>file:///${user.home}/dev/sourceforge</url>
-				</repository>
-			</distributionManagement>
-		</profile>
-		<profile>
-			<id>staging</id>
-			<properties>
-			  <dist.staging>/${java.io.tmpdir}/spring-batch-admin/dist</dist.staging>
-			</properties>
-			<distributionManagement>
-				<site>
-					<id>staging</id>
-					<url>file:///${user.dir}/target/staging</url>
-				</site>
-				<repository>
-					<id>staging</id>
-					<url>file:///${user.dir}/target/staging</url>
-				</repository>
-				<snapshotRepository>
-					<id>staging</id>
-					<url>file:///${user.dir}/target/staging</url>
-				</snapshotRepository>
-			</distributionManagement>
-		</profile>
-		<profile>
 			<id>upload</id>
 			<build>
 			  <plugins>
@@ -231,6 +191,12 @@
 				<artifactId>org.springframework.build.aws.maven</artifactId>
 				<version>3.0.0.RELEASE</version>
 			</extension>
+            <!-- Enabling the use of SSH -->
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh-external</artifactId>
+                <version>2.9</version>
+            </extension>
 		</extensions>
 		<pluginManagement>
 			<plugins>
@@ -440,20 +406,27 @@
 			</plugin>
 		</plugins>
 	</reporting>
-	<distributionManagement>
-		<site>
-			<id>static.springframework.org</id>
-			<url>scp://static.springframework.org/var/www/domains/springframework.org/static/htdocs/spring-batch-admin/trunk</url>
-		</site>
-		<repository>
-			<id>spring-release</id>
-			<name>Spring Release Repository</name>
-			<url>s3://maven.springframework.org/release</url>
-		</repository>
-		<snapshotRepository>
-			<id>spring-snapshot</id>
-			<name>Spring Snapshot Repository</name>
-			<url>s3://maven.springframework.org/snapshot</url>
-		</snapshotRepository>
-	</distributionManagement>
+    <distributionManagement>
+        <repository>
+            <id>ucd-afs-maven-ssh</id>
+            <url>scpexe://kurrency/opt/kuali-tools/share/maven-repo</url>
+        </repository>
+        <snapshotRepository>
+            <id>ucd-afs-maven-ssh-snapshots</id>
+            <url>scpexe://kurrency/opt/kuali-tools/share/maven-repo</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+     <repositories>
+        <repository>
+            <id>ucd-afs-dev</id>
+            <url>https://kfs-dev.ucdavis.edu/share/maven-repo/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>        
+        </repository>
+    </repositories>
 </project>
