@@ -413,27 +413,20 @@
 			</plugin>
 		</plugins>
 	</reporting>
-    <distributionManagement>
+	<distributionManagement>
+
         <repository>
-            <id>ucd-afs-maven-ssh</id>
-            <url>scpexe://kurrency/opt/kuali-tools/share/maven-repo</url>
+            <id>ucd-adminit-release</id>
+            <name>UCD AdminIT Release Repository</name>
+            <url>https://afs-dev.ucdavis.edu/archiva/repository/ucd-releases/</url>
         </repository>
+
         <snapshotRepository>
-            <id>ucd-afs-maven-ssh-snapshots</id>
-            <url>scpexe://kurrency/opt/kuali-tools/share/maven-repo</url>
+            <id>ucd-adminit-snapshot</id>
+            <name>UCD AdminIT Snapshot Repository</name>
+            <url>https://afs-dev.ucdavis.edu/archiva/repository/ucd-snapshots/</url>
         </snapshotRepository>
+
     </distributionManagement>
 
-     <repositories>
-        <repository>
-            <id>ucd-afs-dev</id>
-            <url>https://kfs-dev.ucdavis.edu/share/maven-repo/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>        
-        </repository>
-    </repositories>
 </project>
