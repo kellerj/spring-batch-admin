@@ -101,8 +101,9 @@ visualization of Batch meta data, and also launching and stopping jobs inside th
 			<artifactId>spring-integration-file</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
+		    <groupId>org.apache.tomcat</groupId>
+		    <artifactId>tomcat-jdbc</artifactId>
+		    <version>8.0.32</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>

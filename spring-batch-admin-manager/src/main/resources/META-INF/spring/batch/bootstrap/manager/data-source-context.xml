@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="dataSource"
-		class="org.apache.commons.dbcp.BasicDataSource">
+	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+		p:initialSize="${batch.jdbc.initialSize}"
+		p:maxActive="${batch.jdbc.maxActive}"
+		p:maxWait="${batch.jdbc.maxWait}"
+		p:minIdle="${batch.jdbc.initialSize}"
+		p:maxIdle="${batch.jdbc.maxIdle}"
+		p:testOnBorrow="${batch.jdbc.testOnBorrow}"
+		p:testWhileIdle="${batch.jdbc.testWhileIdle}"
+		p:timeBetweenEvictionRunsMillis="${batch.jdbc.timeBetweenEvictionRunsMillis}"
+		p:validationQueryTimeout="${batch.jdbc.validationQueryTimeout}"
+		p:connectionProperties="v$session.program=${info.app.name};v$session.osuser=spring-batch">
 		<property name="driverClassName" value="${batch.jdbc.driver}" />
 		<property name="url" value="${batch.jdbc.url}" />
 		<property name="username" value="${batch.jdbc.user}" />
 		<property name="password" value="${batch.jdbc.password}" />
-		<property name="testWhileIdle" value="${batch.jdbc.testWhileIdle}"/>
-		<property name="validationQuery" value="${batch.jdbc.validationQuery}"/>
+		
 	</bean>
 
 	<bean id="transactionManager"
@@ -19,11 +28,11 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<!--  Initialise the database if enabled: -->
+	<!--  Initialize the database if enabled: -->
 	<jdbc:initialize-database data-source="dataSource" enabled="${batch.data.source.init}" ignore-failures="DROPS">
 		<jdbc:script location="${batch.drop.script}"/>
 		<jdbc:script location="${batch.schema.script}"/>
-		<jdbc:script location="${batch.business.schema.script}"/>
+		<!-- <jdbc:script location="${batch.business.schema.script}"/> -->
 	</jdbc:initialize-database>
 
 </beans>
