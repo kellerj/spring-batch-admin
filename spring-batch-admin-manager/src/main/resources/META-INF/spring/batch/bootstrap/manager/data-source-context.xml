@@ -15,6 +15,7 @@
 		p:testWhileIdle="${batch.jdbc.testWhileIdle}"
 		p:timeBetweenEvictionRunsMillis="${batch.jdbc.timeBetweenEvictionRunsMillis}"
 		p:validationQueryTimeout="${batch.jdbc.validationQueryTimeout}"
+		p:validationQuery="${batch.jdbc.validationQuery}"
 		p:connectionProperties="v$session.program=${info.app.name};v$session.osuser=spring-batch">
 		<property name="driverClassName" value="${batch.jdbc.driver}" />
 		<property name="url" value="${batch.jdbc.url}" />
