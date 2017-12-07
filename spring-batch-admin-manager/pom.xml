@@ -16,10 +16,12 @@ visualization of Batch meta data, and also launching and stopping jobs inside th
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -103,7 +105,7 @@ visualization of Batch meta data, and also launching and stopping jobs inside th
 		<dependency>
 		    <groupId>org.apache.tomcat</groupId>
 		    <artifactId>tomcat-jdbc</artifactId>
-		    <version>8.0.32</version>
+		    <version>8.5.6</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -206,8 +208,8 @@ visualization of Batch meta data, and also launching and stopping jobs inside th
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<plugin>
