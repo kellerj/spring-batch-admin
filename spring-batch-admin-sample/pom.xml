@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>spring-batch-admin-parent</artifactId>
 		<groupId>org.springframework.batch</groupId>
-		<version>3.0.0.UCD-SNAPSHOT</version>
+		<version>3.0.0.UCD</version>
 		<relativePath>../spring-batch-admin-parent</relativePath>
 	</parent>
 	<packaging>war</packaging>
