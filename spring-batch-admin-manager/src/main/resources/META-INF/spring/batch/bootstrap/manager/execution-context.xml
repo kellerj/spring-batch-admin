@@ -51,8 +51,8 @@
 		</property>
 	</bean>
 
-	<bean id="xmlJobContextFactories" class="org.springframework.batch.core.configuration.support.ClasspathXmlApplicationContextsFactoryBean">
-		<property name="resources" value="classpath*:/META-INF/spring/batch/jobs/*.xml" />
+	<bean id="xmlJobContextFactories" class="org.springframework.batch.admin.configuration.BatchJobApplicationContextFactoryBean">
+		<property name="resources" value="${batch.job.xml.resource.location}" />
 	</bean>
 
 	<bean id="javaJobContextFactories" class="org.springframework.batch.core.configuration.support.GenericApplicationContextFactory">
