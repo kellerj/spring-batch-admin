@@ -7,19 +7,20 @@
 	<description>A set of services (Java, JSON) and a UI (webapp) for managing and launching Spring Batch jobs.</description>
 	<version>3.0.2.UCD-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<scm>
-		<url>http://github.com/spring-projects/spring-batch-admin</url>
-		<connection>scm:git:git://github.com/spring-projects/spring-batch-admin.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/spring-projects/spring-batch-admin.git</developerConnection>
-	  <tag>HEAD</tag>
+  <scm>
+          <connection>scm:git:https://afs-dev.ucdavis.edu/stash/scm/int/spring-batch-admin.git</connection>
+          <developerConnection>scm:git:ssh://git@afs-dev.ucdavis.edu:7999/int/spring-batch-admin.git</developerConnection>
+          <url>https://afs-dev.ucdavis.edu/stash/projects/INT/repos/spring-batch-admin/browse</url>
+          <tag>HEAD</tag>
   </scm>
-	<issueManagement>
-		<system>JIRA</system>
-		<url>https://jira.spring.io/browse/BATCHADM/</url>
-	</issueManagement>
+  <issueManagement>
+          <system>JIRA</system>
+          <url>https://afs-dev.ucdavis.edu/jira/projects/INT</url>
+  </issueManagement>
+
 	<ciManagement>
 		<system>Bamboo</system>
-		<url>https://build.spring.io/browse/BATCH</url>
+		<url>https://afs-dev.ucdavis.edu/bamboo/browse/TOOLS-SBA</url>
 	</ciManagement>
 	<licenses>
 		<license>
