@@ -41,13 +41,13 @@
 		<maven.test.failure.ignore>false</maven.test.failure.ignore>
 		<!-- Spring library versions pulled to match current spring boot as listed here:
 			https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-dependency-versions.html
-			Versions below are as of Spring Boot 1.5.9.RELEASE
+			Versions below are as of Spring Boot 1.5.10.RELEASE
 		 -->
 		<spring.batch.version>3.0.8.RELEASE</spring.batch.version>
-		<spring.framework.version>4.3.13.RELEASE</spring.framework.version>
-		<spring.integration.version>4.3.12.RELEASE</spring.integration.version>
-		<spring.retry.version>1.2.1.RELEASE</spring.retry.version>
-		<spring.data.version>1.13.9.RELEASE</spring.data.version>
+		<spring.framework.version>4.3.14.RELEASE</spring.framework.version>
+		<spring.integration.version>4.3.14.RELEASE</spring.integration.version>
+		<spring.retry.version>1.2.2.RELEASE</spring.retry.version>
+		<spring.data.version>1.13.10.RELEASE</spring.data.version>
 		<spring.hateoas.version>0.23.0.RELEASE</spring.hateoas.version>
 		<slf4j.version>1.7.25</slf4j.version>
 	</properties>
