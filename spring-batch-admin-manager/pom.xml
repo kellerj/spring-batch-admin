@@ -215,8 +215,8 @@ visualization of Batch meta data, and also launching and stopping jobs inside th
         <artifactId>maven-compiler-plugin</artifactId>
       </plugin>
       <plugin>
-        <groupId>org.mortbay.jetty</groupId>
-        <artifactId>maven-jetty-plugin</artifactId>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
         <configuration>
           <contextPath>/steps</contextPath>
         </configuration>
