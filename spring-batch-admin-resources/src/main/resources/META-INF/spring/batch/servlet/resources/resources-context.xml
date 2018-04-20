@@ -12,9 +12,9 @@
 	<mvc:resources location="/,classpath:/META-INF/" mapping="resources/**" />
 
 	<mvc:annotation-driven>
-		<mvc:message-converters register-defaults="true">
+		<!-- <mvc:message-converters register-defaults="true" >
 			<ref bean="jackson2Converter"/>
-		</mvc:message-converters>
+		</mvc:message-converters> -->
 		<mvc:argument-resolvers>
 			<ref bean="sortResolver"/>
 			<ref bean="pageableResolver" />
@@ -22,7 +22,7 @@
 		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
 
-	<bean id="jackson2Converter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+<!-- 	<bean id="jackson2Converter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 		<property name="objectMapper" ref="jacksonMapper"/>
 	</bean>
 
@@ -44,7 +44,7 @@
 			</util:map>
 		</property>
 	</bean>
-
+ -->
 	<bean id="sortResolver" class="org.springframework.data.web.HateoasSortHandlerMethodArgumentResolver" />
 
 	<bean id="pageableResolver" class="org.springframework.data.web.HateoasPageableHandlerMethodArgumentResolver">

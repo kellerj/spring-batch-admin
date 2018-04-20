@@ -18,6 +18,7 @@ package org.springframework.batch.admin.web;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -197,7 +198,8 @@ public class JobController {
 			@RequestParam(defaultValue = "20") int pageSize) {
 		int total = jobService.countJobs();
 		TableUtils.addPagination(model, total, startJob, pageSize, "Job");
-		Collection<String> names = jobService.listJobs(startJob, pageSize);
+		List<String> names = new ArrayList<String>( jobService.listJobs(startJob, pageSize) );
+		Collections.sort(names);
 		List<JobInfo> jobs = new ArrayList<JobInfo>();
 		for (String name : names) {
 			int count = 0;

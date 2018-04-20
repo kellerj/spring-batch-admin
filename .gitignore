@@ -5,17 +5,5 @@ target
 */src/META-INF
 */src/main/webapp/META-INF
 */src/main/java/META-INF
-.settings
-.classpath
-.project
-integration-repo
 .DS_Store
-build.log
-ivy-cache
-spring-build
-.idea
-*.iml
-*.ipr
-*.iws
-.*.swp
 .springBeans
