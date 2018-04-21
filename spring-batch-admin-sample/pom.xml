@@ -115,7 +115,13 @@
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
         <configuration>
-          <contextPath>/spring-batch-admin-sample</contextPath>
+          <httpConnector>
+            <port>8080</port>
+            <host>localhost</host>
+          </httpConnector>
+          <scanIntervalSeconds>0</scanIntervalSeconds>
+          <!-- <contextPath>/steps</contextPath> -->
+          <jvmArgs>-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005</jvmArgs>
         </configuration>
       </plugin>
       <plugin>

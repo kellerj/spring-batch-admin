@@ -220,13 +220,6 @@ visualization of Batch meta data, and also launching and stopping jobs inside th
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
       </plugin>
-      <plugin>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-maven-plugin</artifactId>
-        <configuration>
-          <contextPath>/steps</contextPath>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
 </project>

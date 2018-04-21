@@ -32,5 +32,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/spring-batch-admin-domain"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/spring-batch-admin-manager"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/spring-batch-admin-resources"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
