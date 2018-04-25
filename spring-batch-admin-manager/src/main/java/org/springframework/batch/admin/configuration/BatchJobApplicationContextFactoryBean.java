@@ -3,6 +3,7 @@ package org.springframework.batch.admin.configuration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.batch.core.configuration.support.ApplicationContextFactory;
@@ -18,7 +19,7 @@ public class BatchJobApplicationContextFactoryBean implements FactoryBean<Applic
     
     private List<Resource> resources = new ArrayList<Resource>();
     private ApplicationContext applicationContext;
-    private String excludeJobFilePrefixes;
+    private Properties properties;
 
     /**
      * A set of resources to load using a
@@ -49,18 +50,18 @@ public class BatchJobApplicationContextFactoryBean implements FactoryBean<Applic
             return new ApplicationContextFactory[0];
         }
 
-        List<ApplicationContextFactory> applicationContextFactories = new ArrayList<ApplicationContextFactory>();
-        String[] excludeJobPrefixList = StringUtils.split(excludeJobFilePrefixes, ',');
+        List<ApplicationContextFactory> applicationContextFactories = new ArrayList<ApplicationContextFactory>();        
         for (Resource resource : resources) {
-            if ( StringUtils.startsWithAny(resource.getFilename(), excludeJobPrefixList) ) {
-                LOG.warn("SKIPPING {} due to match of exclude prefix list: {}", resource.getFilename(), excludeJobFilePrefixes);
-                continue;
+            String batchJobName = StringUtils.substringBefore(resource.getFilename(), ".");
+            if ( Boolean.parseBoolean(properties.getProperty(batchJobName + ".enabled", "true")) ) {
+                LOG.info("Loading Batch Job from: {}", resource.getFilename());
+                GenericApplicationContextFactory factory = new GenericApplicationContextFactory(resource);
+                factory.setCopyConfiguration(true);
+                factory.setApplicationContext(applicationContext);
+                applicationContextFactories.add(factory);
+            } else {
+                LOG.warn("SKIPPING {} due to job being disabled via configuration: {}!=true", resource.getFilename(), batchJobName + ".enabled");
             }
-            LOG.info("Loading Batch Job Definitions from: {}", resource.getFilename());
-            GenericApplicationContextFactory factory = new GenericApplicationContextFactory(resource);
-            factory.setCopyConfiguration(true);
-            factory.setApplicationContext(applicationContext);
-            applicationContextFactories.add(factory);
         }
         return applicationContextFactories.toArray(new ApplicationContextFactory[applicationContextFactories.size()]);
     }
@@ -100,8 +101,8 @@ public class BatchJobApplicationContextFactoryBean implements FactoryBean<Applic
         this.applicationContext = applicationContext;
     }
 
-    public void setExcludeJobFilePrefixes(String excludeJobFilePrefixes) {
-        this.excludeJobFilePrefixes = excludeJobFilePrefixes;
+    public void setProperties(Properties properties) {
+        this.properties = properties;
     }
 
 }

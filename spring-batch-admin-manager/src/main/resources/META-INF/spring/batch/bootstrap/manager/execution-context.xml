@@ -53,7 +53,7 @@
 
 	<bean id="xmlJobContextFactories" class="org.springframework.batch.admin.configuration.BatchJobApplicationContextFactoryBean">
 		<property name="resources" value="${batch.job.xml.resource.location}" />
-        <property name="excludeJobFilePrefixes" value="${exclude.batch.job.file.prefix.list}" />
+        <property name="properties" ref="properties" />
 	</bean>
 
 	<bean id="javaJobContextFactories" class="org.springframework.batch.core.configuration.support.GenericApplicationContextFactory">

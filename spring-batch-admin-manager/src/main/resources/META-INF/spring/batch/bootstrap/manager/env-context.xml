@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+  <bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+    <property name="locations">
+      <list>
+        <value>classpath:/org/springframework/batch/admin/bootstrap/batch.properties</value>
+        <value>classpath:batch-default.properties</value>
+        <value>classpath:batch-${ENVIRONMENT:hsql}.properties</value>
+        <value>${instance.config.file}</value>
+      </list>
+    </property>
+    <property name="ignoreResourceNotFound" value="true" />
+  </bean>
+ 
 	<!--  Use this to set additional properties on beans at run time -->
-	<bean id="placeholderProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<list>
-				<value>classpath:/org/springframework/batch/admin/bootstrap/batch.properties</value>
-				<value>classpath:batch-default.properties</value>
-				<value>classpath:batch-${ENVIRONMENT:hsql}.properties</value>
-			</list>
-		</property>
-		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
-		<property name="ignoreResourceNotFound" value="true" />
-		<property name="ignoreUnresolvablePlaceholders" value="false" />
-		<property name="order" value="1" />
-	</bean>
+	<bean id="placeholderProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+        p:properties-ref="properties"
+        p:systemPropertiesModeName="SYSTEM_PROPERTIES_MODE_OVERRIDE"
+        p:ignoreUnresolvablePlaceholders="false"
+        p:order="1" />
 
 </beans>
