@@ -8,8 +8,10 @@
       <list>
         <value>classpath:/org/springframework/batch/admin/bootstrap/batch.properties</value>
         <value>classpath:batch-default.properties</value>
-        <value>classpath:batch-${ENVIRONMENT:hsql}.properties</value>
+        <value>classpath:batch-${ENVIRONMENT:local}.properties</value>
+        <value>classpath:application.properties</value>
         <value>${instance.config.file}</value>
+        <value>${instance.secure.config.file}</value>
       </list>
     </property>
     <property name="ignoreResourceNotFound" value="true" />
