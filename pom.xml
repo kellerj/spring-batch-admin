@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.springframework.batch</groupId>
   <artifactId>spring-batch-admin</artifactId>
   <name>Spring Batch Admin</name>
   <description>A set of services (Java, JSON) and a UI (webapp) for managing and launching Spring Batch jobs.</description>
-  <version>3.0.2.UCD-SNAPSHOT</version>
+  <version>3.0.2.UCD</version>
   <packaging>pom</packaging>
   <scm>
     <connection>scm:git:https://afs-dev.ucdavis.edu/stash/scm/int/spring-batch-admin.git</connection>
     <developerConnection>scm:git:ssh://git@afs-dev.ucdavis.edu:7999/int/spring-batch-admin.git</developerConnection>
     <url>https://afs-dev.ucdavis.edu/stash/projects/INT/repos/spring-batch-admin/browse</url>
-    <tag>HEAD</tag>
+    <tag>spring-batch-admin-3.0.2.UCD</tag>
   </scm>
   <issueManagement>
     <system>JIRA</system>
