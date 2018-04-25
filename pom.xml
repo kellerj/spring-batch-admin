@@ -5,13 +5,13 @@
   <artifactId>spring-batch-admin</artifactId>
   <name>Spring Batch Admin</name>
   <description>A set of services (Java, JSON) and a UI (webapp) for managing and launching Spring Batch jobs.</description>
-  <version>3.0.2.UCD</version>
+  <version>3.0.3.UCD-SNAPSHOT</version>
   <packaging>pom</packaging>
   <scm>
     <connection>scm:git:https://afs-dev.ucdavis.edu/stash/scm/int/spring-batch-admin.git</connection>
     <developerConnection>scm:git:ssh://git@afs-dev.ucdavis.edu:7999/int/spring-batch-admin.git</developerConnection>
     <url>https://afs-dev.ucdavis.edu/stash/projects/INT/repos/spring-batch-admin/browse</url>
-    <tag>spring-batch-admin-3.0.2.UCD</tag>
+    <tag>HEAD</tag>
   </scm>
   <issueManagement>
     <system>JIRA</system>
