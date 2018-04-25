@@ -16,10 +16,12 @@ import org.springframework.core.io.Resource;
 
 public class BatchJobApplicationContextFactoryBean implements FactoryBean<ApplicationContextFactory[]>, ApplicationContextAware {
     private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(java.lang.invoke.MethodHandles.lookup().lookupClass());
+
+    private static final String ENABLED_PROP_SUFFIX = ".enabled";
     
-    private List<Resource> resources = new ArrayList<Resource>();
+    private List<Resource>     resources = new ArrayList<Resource>();
     private ApplicationContext applicationContext;
-    private Properties properties;
+    private Properties         properties;
 
     /**
      * A set of resources to load using a
@@ -52,15 +54,15 @@ public class BatchJobApplicationContextFactoryBean implements FactoryBean<Applic
 
         List<ApplicationContextFactory> applicationContextFactories = new ArrayList<ApplicationContextFactory>();        
         for (Resource resource : resources) {
-            String batchJobName = StringUtils.substringBefore(resource.getFilename(), ".");
-            if ( Boolean.parseBoolean(properties.getProperty(batchJobName + ".enabled", "true")) ) {
+            String batchJobName = StringUtils.substringBefore(resource.getFilename(), ".");            
+            if ( Boolean.parseBoolean(properties.getProperty(batchJobName + ENABLED_PROP_SUFFIX, "true")) ) {
                 LOG.info("Loading Batch Job from: {}", resource.getFilename());
                 GenericApplicationContextFactory factory = new GenericApplicationContextFactory(resource);
                 factory.setCopyConfiguration(true);
                 factory.setApplicationContext(applicationContext);
                 applicationContextFactories.add(factory);
             } else {
-                LOG.warn("SKIPPING {} due to job being disabled via configuration: {}!=true", resource.getFilename(), batchJobName + ".enabled");
+                LOG.warn("SKIPPING {} due to job being disabled via configuration: {}={}", resource.getFilename(), batchJobName + ENABLED_PROP_SUFFIX, properties.getProperty(batchJobName + ENABLED_PROP_SUFFIX));
             }
         }
         return applicationContextFactories.toArray(new ApplicationContextFactory[applicationContextFactories.size()]);
